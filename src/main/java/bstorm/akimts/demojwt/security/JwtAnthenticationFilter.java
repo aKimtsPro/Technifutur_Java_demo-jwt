@@ -29,9 +29,10 @@ public class JwtAnthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = request.getHeader("Authorization").replace(properties.getPrefix(), "");
+        String token = request.getHeader( properties.getHeader() );
 
         if( token != null ){
+            token = token.replace(properties.getPrefix(), "");
 
             try {
                 DecodedJWT jwt = JWT.require(Algorithm.HMAC512(properties.getSecret()))
