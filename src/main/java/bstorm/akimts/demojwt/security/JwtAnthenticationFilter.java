@@ -54,8 +54,7 @@ public class JwtAnthenticationFilter extends OncePerRequestFilter {
                 }
             }
             catch (JWTVerificationException ignored){}
-
-            filterChain.doFilter(request, response);
         }
+        filterChain.doFilter(request, response);
     }
 }
